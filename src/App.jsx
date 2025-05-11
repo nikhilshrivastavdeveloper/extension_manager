@@ -1,4 +1,4 @@
-import { useEffect, useState} from 'react'
+import { useEffect, useState, useRef} from 'react'
 import './App.css'
 import Navbar from './components/nav.jsx'
 import Button from './components/Button.jsx'
@@ -10,6 +10,8 @@ function App() {
   const [extensionData, setExtensionData] = useState([]) // all data
   const [activeExtension, setActiveExtensionData] = useState([]) // active data
   const [inActiveExtension, setInActiveExtension] = useState([]) // inactive data
+  const [isDakModeOn, setDarkMode] = useState(true)
+    let body = useRef(null) // access html element
 
   //fetch data
   useEffect(() => {
@@ -26,6 +28,22 @@ function App() {
     fetchData();
 
   }, [])
+
+  //for darkmode
+  useEffect(() => {
+    toggleDarkAndLightMode()
+  },[isDakModeOn])
+
+  //toggle dark and light mode
+  const toggleDarkAndLightMode = () => {
+
+    console.log(body)
+    if(!body.current) return
+
+    body.current.classList.remove("dark","light")
+
+    isDakModeOn ? body.current.classList.add("dark") : body.current.classList.add("light")
+  }
 
   const removeExtension = (name) => {
     let newExtensionList = extensionData.filter((data) => (data.name !== name))
@@ -61,12 +79,12 @@ function App() {
   }
 
   return (
-    <div className='w-screen h-[100dvh] py-[20px] overflow-auto bg-gradient-to-t dark:from-[#091540] dark:to-[#040918]'>
+    <div className='w-screen h-[100dvh] py-[20px] overflow-auto bg-gradient-to-t dark:from-[#091540] dark:to-[#040918] from-[#EBF2FC] to-[#EEF8F9]' ref={body}>
       <div className='w-[95%] sm:w-[82%] mx-auto'>
-        <Navbar />
+        <Navbar darkModeFn={setDarkMode} isDakModeOn={isDakModeOn}  />
 
         <div className=' mt-[20px] sm:mt-[40px] mb-[30px] flex flex-col items-center sm:flex-row sm:items-center sm:justify-between ' >
-          <h1 className='text-white text-[30px] font-bold'>Extensions List</h1>
+          <h1 className='dark:text-white text-[#121b40] text-[30px] font-bold'>Extensions List</h1>
           <div className='flex justify-around w-[100%] mt-[10px] gap-x-[12px] sm:mt-[0px] sm:w-auto'>
 
             <Button text="All" ID="all" trackState={activebtn} event={setActivebtn} />

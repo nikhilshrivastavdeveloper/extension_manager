@@ -8,7 +8,7 @@ function Btn({ state, name, toggleActiveAndInactiveState }) {
         <div>
             <button
                 onClick={() => toggleActiveAndInactiveState(name)}
-                className={`focus:outline-2 focus:outline-offset-2 focus:outline-orange-500 flex items-center cursor-pointer rounded-full w-[50px] p-1 transition-colors duration-300 ${state ? "bg-orange-600" : "bg-white/30"
+                className={`focus:outline-2 focus:outline-offset-2 focus:outline-orange-500 flex items-center cursor-pointer rounded-full w-[50px] p-1 transition-colors duration-300 ${state ? "bg-orange-600" : "dark:bg-white/30 bg-gray-400"
                     }`}
             >
                 <span
