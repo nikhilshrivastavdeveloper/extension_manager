@@ -15,7 +15,7 @@ function App() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        let res = await fetch("./src/data.json");
+        let res = await fetch("/src/data.json");
         let convert = await res.json();
         setExtensionData(convert);
       } catch (err) {
