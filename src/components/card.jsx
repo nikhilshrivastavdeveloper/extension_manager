@@ -1,10 +1,10 @@
-import "./card.css";
+
 import Btn from "./btn.jsx";
 
 function Card({ logo, name, description, isActive, removeExtension, toggleActiveAndInactiveState }) {
 
     return (
-        <div className="rounded-[10px] p-[20px] border-[1px] border-white bg-white shadow-2xl dark:bg-gray-600/20 dynamicWidth">
+        <div className="rounded-[10px] p-[20px] border-[1px] border-white max-h-[205px] overflow-auto w-[100%] bg-white shadow-2xl dark:bg-gray-600/20">
             <div className=" mb-[20px] flex text-white justify-between">
                 <div>
                     <img src={logo} />

@@ -1,5 +1,6 @@
 import { useEffect, useState, useRef } from 'react'
 import './App.css'
+import "./components/card.css";
 import Navbar from './components/nav.jsx'
 import Button from './components/Button.jsx'
 import Card from './components/card.jsx'
@@ -37,7 +38,6 @@ function App() {
   //toggle dark and light mode
   const toggleDarkAndLightMode = () => {
 
-    console.log(body)
     if (!body.current) return
 
     body.current.classList.remove("dark", "light")
@@ -97,20 +97,26 @@ function App() {
         {/* all extension lists */}
         <div className='flex gap-[20px] flex-wrap'>
           {
-            activebtn === "all" && extensionData.map((data, index) => (
-              <Card {...data} key={index} removeExtension={removeExtension} toggleActiveAndInactiveState={toggleActiveAndInactiveState} />
+            activebtn === "all" && extensionData.map((data) => (
+              <div key={data.name} className='dynamicWidth'>
+              <Card {...data}  removeExtension={removeExtension} toggleActiveAndInactiveState={toggleActiveAndInactiveState} />
+              </div>
             ))
           }
 
           {
             activebtn === "active" && activeExtension.map((data, index) => (
+              <div key={data.name} className='dynamicWidth'>
               <Card {...data} key={index} removeExtension={removeExtension} toggleActiveAndInactiveState={toggleActiveAndInactiveState} />
+              </div>
             ))
           }
 
           {
             activebtn === "inactive" && inActiveExtension.map((data, index) => (
+              <div key={data.name} className='dynamicWidth'>
               <Card {...data} key={index} removeExtension={removeExtension} toggleActiveAndInactiveState={toggleActiveAndInactiveState} />
+              </div>
             ))
           }
         </div>
